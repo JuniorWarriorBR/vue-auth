@@ -28,8 +28,16 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-
-### Install files on project
+### Create a project
 ```
-npm i --save bootstrap axios
+vue create vue-auth
+```
+
+
+### Install dependencies on project
+```
+vue add vuetify 
+Preset (Default - recommended)
+
+npm i --save axios
 ```
