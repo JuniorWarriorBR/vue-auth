@@ -41,3 +41,12 @@ Preset (Default - recommended)
 
 npm i --save axios
 ```
+
+### Adjusting views and importing the Mandali font
+```
+@import url('https://fonts.googleapis.com/css?family=Mandali&display=swap');
+
+* {
+    font-family: 'Mandali', sans-serif;
+}
+```
