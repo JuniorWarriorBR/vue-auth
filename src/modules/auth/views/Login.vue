@@ -13,7 +13,7 @@
                 <v-alert v-model="alert" type="error" dismissible>{{messageError}}</v-alert>
                 <v-form ref="form" v-model="valid" lazy-validation>
                   <v-text-field
-                    v-model="email"
+                    v-model="formUser.email"
                     :rules="emailRules"
                     label="E-mail"
                     required
@@ -21,7 +21,7 @@
                   ></v-text-field>
 
                   <v-text-field
-                    v-model="password"
+                    v-model="formUser.password"
                     :type="showPassword ? 'text' : 'password'"
                     prepend-icon="mdi-lock"
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -57,18 +57,20 @@
 </template>
 
 <script>
-import { mapAction } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   data: () => ({
+    formUser: {
+      user: "",
+      email: ""
+    },
     showPassword: false,
     valid: true,
     loading: false,
     alert: false,
     messageError: "",
     token: "",
-    user: "",
-    email: "",
     emailRules: [
       v => !!v || "E-mail obrigatório",
       v => /.+@.+\..+/.test(v) || "Digite um e-mail válido"
@@ -84,13 +86,19 @@ export default {
   methods: {
     ...mapActions("auth", ["ActionDoLogin"]),
 
-    submit() {
-      this.ActionDoLogin(this.email, this.password)
+    async submit() {
+      try {
+        await this.ActionDoLogin(this.formUser);
+        this.$router.push({ name: "home" });
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     validate() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
+        this.submit();
       }
     },
     reset() {

@@ -8,7 +8,7 @@ import './assets/scss/app.scss'
 
 Vue.config.productionTip = false
 
-new Vue({
+window._Vue = new Vue({
   router,
   store,
   vuetify,

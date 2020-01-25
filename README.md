@@ -39,7 +39,7 @@ vue create vue-auth
 vue add vuetify 
 Preset (Default - recommended)
 
-npm i --save axios
+npm i --save vue-resoure
 ```
 
 ### Adjusting views and importing the Mandali font
